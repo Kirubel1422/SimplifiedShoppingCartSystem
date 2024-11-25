@@ -1,6 +1,6 @@
 package  SimplifiedShoppingCartSystem.modules.Cart;
 
-import SimplifiedShoppingCartSystem.modules.Item
+import SimplifiedShoppingCartSystem.modules.Product.Item;
 
 public class Cart extends Item
 {
@@ -32,26 +32,11 @@ public class Cart extends Item
             }
         }
     }
-    // implementation for abstract method from the supper class
-    @Override
-    public double increaseInStockQuantity(){
-
-    };
-
-    @Override
-    public double decreaseInStockQuantity(){
-
-    };
-
 
     //method to calculate total price of items
-       public float getTotalPrice() {
+    public float getTotalPrice() {
         return totalPrice;
     }
-
-
-
-
 
     //method for adding items
     int i=0;//item array index
