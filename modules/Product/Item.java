@@ -36,6 +36,15 @@ public class Item {
         this.inStock = inStock;
         id++;
     }
+    
+    // Display Item info
+    public String displayInfo() {
+        return "Item name: " + this.name +
+               " , Item price: " + this.price +
+               " , Status: " + (this.isVisible ? "Yes" : "No") +
+               " , InStock: " + this.inStock;
+    }
+    
 
     // Setters
     public void setName(String name)
@@ -72,6 +81,20 @@ public class Item {
 
     public boolean getVisibility(){
         return this.isVisible;
+    }
+
+    public id getId(){
+        return this.id;
+    }
+
+    // 
+    public void inc(){
+        this.inStock ++;
+    }
+
+    // 
+    public void dec(){
+        this.inStock --;
     }
 }
 

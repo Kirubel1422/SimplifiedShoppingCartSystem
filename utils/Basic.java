@@ -1,12 +1,40 @@
 package SimplifiedShoppingCartSystem.utils;
 
+import SimplifiedShoppingCartSystem.modules.Product.Item;
+
 public class Basic {
-    // Method to validate user input
+    // Method to validate user input for int sets
     public static boolean validateInput(int[] validOptions, int choice){
         // Check if the selected choice is part of the valid array of 
         // options
         for(int validOption: validOptions){
             if(validOption == choice){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    // Method to validate user input for String sets
+    public static boolean validateInput(String[] validOptions, String choice){
+        // Check if the selected choice is part of the valid array of 
+        // options
+        for(String validOption: validOptions){
+            if(validOption.equals(choice)){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+     // Method to validate user input for String sets with case-sensitivity flag
+     public static boolean validateInput(String[] validOptions, String choice, boolean i){
+        // Check if the selected choice is part of the valid array of 
+        // options
+        for(String validOption: validOptions){
+            if(validOption.toLowerCase().equals(choice.toLowerCase())){
                 return true;
             }
         }
@@ -22,5 +50,14 @@ public class Basic {
      // Method to display a friendly error
      public static void displayError(){
         System.out.println("Something went wrong!");
+    }
+
+    // Method to print all arrays
+    public static void printArray(Item[] array){
+        for(Item item : array){
+            if(item != null){
+                System.out.println(item.displayInfo());
+            }
+        }
     }
 }

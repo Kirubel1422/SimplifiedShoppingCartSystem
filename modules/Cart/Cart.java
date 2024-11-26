@@ -1,52 +1,71 @@
 package  SimplifiedShoppingCartSystem.modules.Cart;
 
-import SimplifiedShoppingCartSystem.modules.Product.Item;
+import SimplifiedShoppingCartSystem.modules.Product.*;
+
 
 public class Cart extends Item
 {
     private static float totalPrice;
-    private static float totalPriceWithTax;
     static float TAX_RATE = 7;
 
     //specific attribute
-    incartItems[i]
-    private int cartId;
-    private int incartItems;
+    Item[] incartItems;
+    private int cartId = 0;
+    private int incartItemsnumber;
 
-    //default onstructor
+    //default constructor
     public Cart(){
         cartId++;
-        incartItems = 0;
+        incartItemsnumber = 0;
         totalPrice=0;
     }
 
     //method to remove an item from the cart
-    private void removeFromCart(String itemToBeRemoved)
+    private void removeFromCart(Item itemToBeRemoved)
     {
-        int i;
-        for(int i=0; i<incartItems.lenght(); i++)
-        {
-            if(itemToBeRemoved==incartItems[i])
-            {
-                incart
+        if(incartItemsnumber>=1) {
+            
+            Item[] incartArrayCopy = new Item[incartItems.length - 1];
+
+            for (int i = 0; i < incartItems.length; i++) {
+                if (itemToBeRemoved != incartItems[i]) {
+                    incartArrayCopy[j] = incartItems[j];
+                }
             }
+
+            incartItems = incartArrayCopy;
+
+            //whenever the item is removed from the cart, the number of item in stock increases
+            inc();
+            incartItemsnumber--;
         }
-    }
+        else {
+            System.out.println("There is no item in the cart to remove.");
+        }
+        }
+
 
     //method to calculate total price of items
     public float getTotalPrice() {
         return totalPrice;
     }
 
+
     //method for adding items
     int i=0;//item array index
 
     //adding individual item of  Item class
-    public void addItem(Item individualItem)
+    public void addIteminCart(Item individualItem, Item[] incart_items)
     {
-        incartItems[i]=individualItem;
-        totalPrice += individualItem.price;
-        i++;
+        if(getInstock() > 0) {
+            incartItems[i] = individualItem;
+            totalPrice += individualItem.getItemPrice();
+            dec();
+            incartItemsnumber++;
+            i++;
+        }
+        else{
+            System.out.println("There is no item in the stock");
+        }
     }
-
 }
