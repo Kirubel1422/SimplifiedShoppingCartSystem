@@ -9,7 +9,7 @@ public class Cart extends Item
     static float TAX_RATE = 7;
 
     //specific attribute
-    Item[] incartItems;
+    private Item[] incartItems = new Item[5];
     private int cartId = 0;
     private int incartItemsnumber;
 
@@ -55,11 +55,10 @@ public class Cart extends Item
     int i=0;//item array index
 
     //adding individual item of  Item class
-    public void addIteminCart(Item individualItem, Item[] incart_items)
-    {
-        if(getInstock() > 0) {
+    public void addIteminCart(Item individualItem){
+        if(individualItem != null && individualItem.getInStockQuantity() > 0) {
             incartItems[i] = individualItem;
-            totalPrice += individualItem.getItemPrice();
+            totalPrice += individualItem.getPrice();
             dec();
             incartItemsnumber++;
             i++;
@@ -67,5 +66,10 @@ public class Cart extends Item
         else{
             System.out.println("There is no item in the stock");
         }
+    }
+
+    // get in cart items
+    public Item[] getInCartItems(){
+        return this.incartItems;
     }
 }
