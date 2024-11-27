@@ -3,7 +3,7 @@ package SimplifiedShoppingCartSystem.modules.Product;
 public class Item {
     //Attributes
     private String name;
-    static int id = 0;
+    static int id;
     private float price;
     private boolean isVisible;
     private int inStock;
@@ -39,8 +39,7 @@ public class Item {
     
     // Display Item info
     public String displayInfo() {
-        return "ID: " + Item.id +
-               " , Item name: " + this.name +
+        return "Item name: " + this.name +
                " , Item price: " + this.price +
                " , Status: " + (this.isVisible ? "Yes" : "No") +
                " , InStock: " + this.inStock;
@@ -84,8 +83,8 @@ public class Item {
         return this.isVisible;
     }
 
-    public int getId(){
-        return Item.id;
+    public id getId(){
+        return this.id;
     }
 
     // 
