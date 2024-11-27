@@ -9,9 +9,13 @@ import SimplifiedShoppingCartSystem.modules.Cart.Cart;
 import SimplifiedShoppingCartSystem.modules.Product.Item;
 
 public class CartHelpers {
-    public static Item[] addItemToCart(Cart myCart, Item item, Item[] incart_items){
-        System.out.println(item.getName() + " has been added to your cart successfully.");
-        return myCart.addIteminCart(item, incart_items);
+    public static void addItemToCart(Cart myCart, Item item){
+        try {
+            myCart.addIteminCart(item);
+            System.out.println(item.getName() + " has been added to your cart successfully.");
+        } catch (Exception e) {
+            displayError();
+        }
     }
 
     public static int removeItemFromCart(){
@@ -19,29 +23,37 @@ public class CartHelpers {
         return 1;
     }
 
-    public static int showCartDetails(){
-        System.out.println("Show Cart details...");
-        return 1;
+    public static int showCartDetails(Cart myCart){
+        Item[] items =  myCart.getInCartItems();
+
+        for(Item item:items){
+            if(item != null){
+                printArray(items);
+                System.out.println("Sub total: " + myCart.getTotalPrice());
+                return 1;
+            }
+        }
+
+        System.out.println("Oops, there is no item in your cart.");
+        return -1;
     }  
     
     // More general to addItemToCart
-    public static void addToCart(Cart cart, Item[] items, Item[] incart_items){
+    public static void addToCart(Cart cart, Item[] items){
         int itemId;
         printArray(items);
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Please enter the item id to add to your cart: ");
+        System.out.print("Please enter the item id to add to your cart: ");
         itemId = sc.nextInt();
 
         int search_result = findItem(items, itemId);
         if(search_result == -1){
             displayError("The item is not found.");
         }else{
-            addItemToCart(cart, items[search_result], incart_items);
+            addItemToCart(cart, items[search_result]);
         }
-
-        sc.close();
     }
 
     // Find an item by id
