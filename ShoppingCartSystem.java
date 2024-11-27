@@ -53,7 +53,7 @@ public class ShoppingCartSystem {
         // Get user choice
         Scanner sc = new Scanner(System.in);
         choice = sc.nextInt();
-        
+
         // Validate user input
         if(validateInput(validOptions, choice)){
             return choice;
@@ -68,13 +68,13 @@ public class ShoppingCartSystem {
                 items = createItem(items);
                 break;
             case 2:
-                addToCart(myCart, items, incart_items);
+                addToCart(myCart, items);
                 break;
             case 3: 
                 removeItemFromCart();
                 break;
             case 4:
-                showCartDetails();
+                showCartDetails(myCart);
                 break;
             case 5:
                 printArray(items);
