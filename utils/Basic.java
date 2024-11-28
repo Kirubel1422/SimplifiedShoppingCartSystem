@@ -3,6 +3,19 @@ package utils;
 import modules.Product.Item;
 
 public class Basic {
+    // Method to validate user input for int sets
+    public static boolean validateInput(int[] validOptions, int choice){
+        // Check if the selected choice is part of the valid array of 
+        // options
+        for(int validOption: validOptions){
+            if(validOption == choice){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     // Method to validate user input for String sets
     public static boolean validateInput(String[] validOptions, String choice){
         // Check if the selected choice is part of the valid array of 
