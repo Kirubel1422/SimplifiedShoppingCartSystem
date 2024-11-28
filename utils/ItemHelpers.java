@@ -1,8 +1,5 @@
 package utils;
 
-import static utils.Basic.displayError;
-import static utils.Basic.validateInput;
-
 import java.util.Scanner;
 import modules.Product.*;
 
@@ -12,9 +9,6 @@ public class ItemHelpers {
 
         String item_name = "";
 
-        boolean isVisible = false;
-        String isVisibleResp = "";
-        
         float price = 0f;
 
         int inStock = 0;
