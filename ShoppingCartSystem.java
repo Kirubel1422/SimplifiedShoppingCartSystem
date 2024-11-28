@@ -46,7 +46,8 @@ public class ShoppingCartSystem {
         System.out.println("3. Remove Item from your Cart");
         System.out.println("4. Show Cart Details");
         System.out.println("5. List all available Items.");
-        System.out.println("6. Exit");
+        System.out.println("6. Add tax rate.");
+        System.out.println("7. Exit");
         
         // Get user choice
         Scanner sc = new Scanner(System.in);

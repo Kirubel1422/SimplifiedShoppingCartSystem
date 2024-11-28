@@ -1,5 +1,7 @@
 package modules.Cart;
 
+import static utils.Basic.printArray;
+
 import modules.Product.*;
 
 
@@ -31,7 +33,7 @@ public class Cart extends Item
                 if (incartItems[i] != null && incartItems[i].equals(itemToBeRemoved) && !itemFound) {
                     // Skip the first occurrence of the item to be removed
                     totalPrice -= incartItems[i].getPrice();
-                    inc(); // Increment stock when item is removed
+                    incartItems[i].inc(); // Increment stock when item is removed
                     inCart--;
                     itemFound = true;
                 } else {
@@ -68,13 +70,53 @@ public class Cart extends Item
         if(getInStockQuantity() > 0) {
             this.incartItems[i] = individualItem;
             totalPrice += individualItem.getPrice();
-            dec();
+            individualItem.dec();
             inCart++;
             i++;
         }
         else{
             System.out.println("There is no item in the stock");
         }
+    }
+    
+    // Useful method to print in cart items
+    public void printInCartItems(){
+        Item[] inCartItemsCpy = new Item[incartItems.length];
+        int[] item_count = new int[incartItems.length];
+        int[] added_items_id = new int[incartItems.length];
+
+        int added_counter = 0;
+        for(int i=0; i<inCartItemsCpy.length; i++){
+            if(this.incartItems[i] != null){
+                if(!alreadyInCart(added_items_id, this.incartItems[i].getId())){
+                    inCartItemsCpy[added_counter] = this.incartItems[i];
+                    added_items_id[added_counter] = this.incartItems[i].getId();
+                    item_count[added_counter] = 1;
+                    added_counter++;
+                }else{
+                    item_count[added_counter] = item_count[added_counter] != 0 ? item_count[added_counter] ++ : 1;
+                    added_counter++;
+                }
+        
+            }
+        }
+
+        for(int i = 0; i < inCartItemsCpy.length; i++){
+            if(inCartItemsCpy[i]!=null){
+                System.out.println("Item Name: " + inCartItemsCpy[i].getName() + "Item Price: " + inCartItemsCpy[i].getPrice() + " X " + item_count[i]) ;
+            }
+        }
+    }
+
+    private boolean alreadyInCart(int[] added_items, int test_id){
+        for(int id: added_items){
+            if(test_id == id){
+                System.out.println("Already in cart!");
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // return incart items 

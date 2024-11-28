@@ -60,4 +60,15 @@ public class Basic {
             }
         }
     }
+
+    // Check items existence: used in addItemToCart
+    public static boolean itemExists(Item[] items){
+        for(Item item: items){
+            if(item != null){
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

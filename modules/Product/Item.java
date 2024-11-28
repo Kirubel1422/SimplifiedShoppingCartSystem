@@ -73,15 +73,15 @@ public class Item {
 
     // Getters
     public String getName(){
-        return name;
+        return this.name;
     }
 
     public double getPrice(){
-        return price;
+        return this.price;
     }
 
     public double getInStockQuantity(){
-        return inStock;
+        return this.inStock;
     }
 
     public boolean getVisibility(){
@@ -100,6 +100,7 @@ public class Item {
     // 
     public void dec(){
         this.inStock --;
+        System.out.println(this.inStock);
     }
 }
 

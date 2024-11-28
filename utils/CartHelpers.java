@@ -1,7 +1,6 @@
 package utils;
 
-import static utils.Basic.displayError;
-import static utils.Basic.printArray;
+import static utils.Basic.*;
 
 import java.util.Scanner;
 
@@ -11,7 +10,7 @@ import modules.Product.Item;
 public class CartHelpers {
     public static void addItemToCart(Cart myCart, Item item){
         try {
-            myCart.addIteminCart(item);;
+            myCart.addIteminCart(item);
             System.out.println(item.getName() + " has been added to your cart successfully.");
         } catch (Exception e) {
             displayError();
@@ -44,25 +43,24 @@ public class CartHelpers {
     }
 
     public static int showCartDetails(Cart myCart){
-        Item[] items =  myCart.getInCartItems();
-
-        for(Item item:items){
-            if(item != null){
-                printArray(items);
-                System.out.println("Sub total: " + myCart.getTotalPrice());
-                return 1;
-            }
-        }
-
+        myCart.printInCartItems();      
         System.out.println("Oops, there is no item in your cart.");
         return -1;
     }  
     
     // More general to addItemToCart
-    public static void addToCart(Cart cart, Item[] items){
+    public static int addToCart(Cart cart, Item[] items){
         int itemId;
-        printArray(items);
+        
+        // Use item exists function to check if there 
+        // are items created
+        if(!itemExists(items)){
+            System.out.println("Please create a new item before you add to cart.");
+            return -1;
+        }
 
+        // Show the items available for adding
+        printArray(items);
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Please enter the item id to add to your cart: ");
@@ -74,6 +72,8 @@ public class CartHelpers {
         }else{
             addItemToCart(cart, items[search_result]);
         }
+
+        return 1;
     }
 
     // Find an item by id

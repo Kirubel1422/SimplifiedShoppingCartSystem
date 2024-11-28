@@ -1,12 +1,10 @@
 package utils;
 
 import static utils.Basic.displayError;
-import static utils.Basic.printArray;
 import static utils.Basic.validateInput;
 
 import java.util.Scanner;
 import modules.Product.*;
-import utils.Basic.*;;
 
 public class ItemHelpers {
     public static Item[] createItem(Item[] items){
