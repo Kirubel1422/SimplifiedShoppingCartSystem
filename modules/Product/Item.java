@@ -1,22 +1,24 @@
-package SimplifiedShoppingCartSystem.modules.Product;
+package modules.Product;
 
 public class Item {
     //Attributes
     private String name;
-    static int id;
+    private int id;
     private float price;
     private boolean isVisible;
     private int inStock;
+    private static int count = -1;
 
 
     //default constructor
     public Item()
     {//initializing attributes
-        name="Unknown Product";
-        id++;
-        price=0;
-        isVisible= false;
-        inStock=1;
+        this.name="Unknown Product";
+        this.price=0;
+        this.isVisible= false;
+        this.inStock=1;
+        Item.count ++;
+        this.id = count;
     }
 
     //constructor with different arguements
@@ -25,7 +27,8 @@ public class Item {
         this.price=price;
         this.isVisible=isVisible;
         this.inStock = 0;
-        id++;
+        Item.count ++;
+        this.id = count;
     }
 
     //constructor with different arguements
@@ -34,12 +37,14 @@ public class Item {
         this.price=price;
         this.isVisible=isVisible;
         this.inStock = inStock;
-        id++;
+        Item.count ++;
+        this.id = count;
     }
     
     // Display Item info
     public String displayInfo() {
-        return "Item name: " + this.name +
+        return "ID: " + this.id +
+               " , Item name: " + this.name +
                " , Item price: " + this.price +
                " , Status: " + (this.isVisible ? "Yes" : "No") +
                " , InStock: " + this.inStock;
@@ -83,7 +88,7 @@ public class Item {
         return this.isVisible;
     }
 
-    public id getId(){
+    public int getId(){
         return this.id;
     }
 

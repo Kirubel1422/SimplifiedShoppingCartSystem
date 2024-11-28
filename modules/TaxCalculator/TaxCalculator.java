@@ -1,7 +1,7 @@
-package SimplifiedShoppingCartSystem.modules.TaxCalculator;
+package modules.TaxCalculator;
 
-import SimplifiedShoppingCartSystem.modules.Cart.Cart;
-import SimplifiedShoppingCartSystem.modules.TaxCalculator.TaxCalculatorInterface.*;;
+import modules.Cart.Cart;
+import modules.TaxCalculator.TaxCalculatorInterface.*;;
 
 public class TaxCalculator extends Cart implements TaxCalculatorInterface{
     float total_price = 0f;

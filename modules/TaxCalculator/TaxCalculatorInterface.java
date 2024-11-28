@@ -1,4 +1,4 @@
-package SimplifiedShoppingCartSystem.modules.TaxCalculator;
+package modules.TaxCalculator;
 
 public interface TaxCalculatorInterface {
     public void calculatePrice();

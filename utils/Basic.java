@@ -1,6 +1,6 @@
-package SimplifiedShoppingCartSystem.utils;
+package utils;
 
-import SimplifiedShoppingCartSystem.modules.Product.Item;
+import modules.Product.Item;
 
 public class Basic {
     // Method to validate user input for int sets

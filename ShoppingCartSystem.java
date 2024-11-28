@@ -1,17 +1,15 @@
-package SimplifiedShoppingCartSystem;
 import java.util.Scanner;
 
-import SimplifiedShoppingCartSystem.modules.Cart.Cart;
-import SimplifiedShoppingCartSystem.modules.Product.Item;
+import modules.Cart.Cart;
+import modules.Product.Item;
 
-import static SimplifiedShoppingCartSystem.utils.CartHelpers.*;
-import static SimplifiedShoppingCartSystem.utils.ItemHelpers.*;
-import static SimplifiedShoppingCartSystem.utils.Basic.*;
+import static utils.CartHelpers.*;
+import static utils.ItemHelpers.*;
+import static utils.Basic.*;
 
 public class ShoppingCartSystem {
     private static Item[] items = new Item[5];
-    private static Item[] incart_items = new Item[5];
-
+    
     private static Cart myCart = new Cart();
 
     public static void main(String[] args) {
@@ -71,7 +69,7 @@ public class ShoppingCartSystem {
                 addToCart(myCart, items);
                 break;
             case 3: 
-                removeItemFromCart();
+                removeItemFromCart(myCart, items);
                 break;
             case 4:
                 showCartDetails(myCart);

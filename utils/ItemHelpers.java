@@ -1,12 +1,12 @@
-package SimplifiedShoppingCartSystem.utils;
+package utils;
 
-import static SimplifiedShoppingCartSystem.utils.Basic.displayError;
-import static SimplifiedShoppingCartSystem.utils.Basic.printArray;
-import static SimplifiedShoppingCartSystem.utils.Basic.validateInput;
+import static utils.Basic.displayError;
+import static utils.Basic.printArray;
+import static utils.Basic.validateInput;
 
 import java.util.Scanner;
-import SimplifiedShoppingCartSystem.modules.Product.*;
-import SimplifiedShoppingCartSystem.utils.Basic.*;;
+import modules.Product.*;
+import utils.Basic.*;;
 
 public class ItemHelpers {
     public static Item[] createItem(Item[] items){

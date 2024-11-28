@@ -1,25 +1,45 @@
-package SimplifiedShoppingCartSystem.utils;
+package utils;
 
-import static SimplifiedShoppingCartSystem.utils.Basic.displayError;
-import static SimplifiedShoppingCartSystem.utils.Basic.printArray;
+import static utils.Basic.displayError;
+import static utils.Basic.printArray;
 
 import java.util.Scanner;
 
-import SimplifiedShoppingCartSystem.modules.Cart.Cart;
-import SimplifiedShoppingCartSystem.modules.Product.Item;
+import modules.Cart.Cart;
+import modules.Product.Item;
 
 public class CartHelpers {
     public static void addItemToCart(Cart myCart, Item item){
         try {
-            myCart.addIteminCart(item);
+            myCart.addIteminCart(item);;
             System.out.println(item.getName() + " has been added to your cart successfully.");
         } catch (Exception e) {
             displayError();
         }
     }
 
-    public static int removeItemFromCart(){
-        System.out.println("Remove Item from Cart...");
+    public static int removeItemFromCart(Cart cart, Item[] items){
+        int itemId;
+        printArray(cart.getInCartItems());
+
+        // Check if the cart got something before asking for user input
+        if(cart.getInCartAmount() == 0){
+            System.out.println("Cart is already empty.");
+            return -1;
+        }
+
+        // Proceed with getting item to remove from cart
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Please enter the item id to remove from your cart: ");
+        itemId = sc.nextInt();
+
+        int search_result = findItem(items, itemId);
+        if(search_result == -1){
+            displayError("The item is not found.");
+        }else{
+            cart.removeFromCart(items[search_result]);
+        }
         return 1;
     }
 
