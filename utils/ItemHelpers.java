@@ -41,7 +41,6 @@ public class ItemHelpers {
             }
             first_empty_index++;
         }
-        System.out.println("First Empty Index: " + first_empty_index);
         items[first_empty_index]=item_to_be_added;
   
         return items;

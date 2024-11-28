@@ -24,7 +24,7 @@ public class ShoppingCartSystem {
             // If invalid it will return -1
             int first_menu_choice = displayMainMenu(first_run);
             first_run = false;
-            System.out.println("Choice: " + first_menu_choice);
+            System.out.println("\n\nChoice: " + first_menu_choice);
             displaySecondaryMenu(first_menu_choice);
 
             if(first_menu_choice == 7){
