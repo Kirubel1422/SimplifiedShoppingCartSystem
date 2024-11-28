@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import modules.Cart.Cart;
 import modules.Product.Item;
+import modules.TaxCalculator.TaxCalculator;
 
 public class CartHelpers {
     public static void addItemToCart(Cart myCart, Item item){
@@ -42,10 +43,14 @@ public class CartHelpers {
         return 1;
     }
 
-    public static int showCartDetails(Cart myCart){
-        myCart.printInCartItems();      
-        System.out.println("Oops, there is no item in your cart.");
-        return -1;
+    public static int showCartDetails(Cart myCart, TaxCalculator taxCalculator){
+        if(myCart.printInCartItems() == -1){
+            System.out.println("Oops, there is no item in your cart.");
+            return -1;
+        }
+
+        taxCalculator.displayFinalPrice();
+        return 1;
     }  
     
     // More general to addItemToCart

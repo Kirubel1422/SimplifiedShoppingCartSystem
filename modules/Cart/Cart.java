@@ -1,9 +1,6 @@
 package modules.Cart;
 
-import static utils.Basic.printArray;
-
 import modules.Product.*;
-
 
 public class Cart extends Item
 {
@@ -71,6 +68,7 @@ public class Cart extends Item
             this.incartItems[i] = individualItem;
             totalPrice += individualItem.getPrice();
             individualItem.dec();
+            individualItem.inc_in_cart_count();
             inCart++;
             i++;
         }
@@ -79,46 +77,6 @@ public class Cart extends Item
         }
     }
     
-    // Useful method to print in cart items
-    public void printInCartItems(){
-        Item[] inCartItemsCpy = new Item[incartItems.length];
-        int[] item_count = new int[incartItems.length];
-        int[] added_items_id = new int[incartItems.length];
-
-        int added_counter = 0;
-        for(int i=0; i<inCartItemsCpy.length; i++){
-            if(this.incartItems[i] != null){
-                if(!alreadyInCart(added_items_id, this.incartItems[i].getId())){
-                    inCartItemsCpy[added_counter] = this.incartItems[i];
-                    added_items_id[added_counter] = this.incartItems[i].getId();
-                    item_count[added_counter] = 1;
-                    added_counter++;
-                }else{
-                    item_count[added_counter] = item_count[added_counter] != 0 ? item_count[added_counter] ++ : 1;
-                    added_counter++;
-                }
-        
-            }
-        }
-
-        for(int i = 0; i < inCartItemsCpy.length; i++){
-            if(inCartItemsCpy[i]!=null){
-                System.out.println("Item Name: " + inCartItemsCpy[i].getName() + "Item Price: " + inCartItemsCpy[i].getPrice() + " X " + item_count[i]) ;
-            }
-        }
-    }
-
-    private boolean alreadyInCart(int[] added_items, int test_id){
-        for(int id: added_items){
-            if(test_id == id){
-                System.out.println("Already in cart!");
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     // return incart items 
     public Item[] getInCartItems(){
         return this.incartItems;
@@ -128,4 +86,44 @@ public class Cart extends Item
     public int getInCartAmount(){
         return this.inCart;
     }
+
+    // Print in cart items in a good format
+    public int printInCartItems(){
+        if(this.inCart == 0){
+            return -1;
+        }
+        
+        int[] inCartItemIds = new int[incartItems.length];
+        boolean exists = false;
+
+            for(int i=0; i< incartItems.length; i++){
+                Item item = incartItems[i];
+
+                if(item != null){
+                    for(int index:inCartItemIds){
+                        if(index == item.getId()){
+                            exists = true;
+                        }
+                    }
+                    if(!exists){
+                        inCartItemIds[i] = item.getId();
+                        System.out.println("Item Name: " + item.getName() + " , Item Price: " + item.getPrice() + " X " + item.getInCartCount());
+                    }
+                }
+            }
+            return 1;
+        
+    }
+
+    // public void getTotal(){
+    //     double total = 0;
+    //     for(Item item:incartItems){
+    //         if(item!= null){
+    //             total += item.getPrice();
+    //         }
+    //     }
+
+    //     System.out.println("SubTotal: (without tax) " + total);
+    //     System.out.println("Total: (" + TaxCalculator.)
+    // }
 }

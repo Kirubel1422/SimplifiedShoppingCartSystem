@@ -5,9 +5,10 @@ public class Item {
     private String name;
     private int id;
     private float price;
-    private boolean isVisible;
     private int inStock;
-    private static int count = -1;
+
+    private int in_cart_count = 0; // Count's how many of this object live in the cart
+    private static int count = -2;
 
 
     //default constructor
@@ -15,27 +16,24 @@ public class Item {
     {//initializing attributes
         this.name="Unknown Product";
         this.price=0;
-        this.isVisible= false;
         this.inStock=1;
         Item.count ++;
         this.id = count;
     }
 
     //constructor with different arguements
-    public Item(String name, float price, boolean isVisible){
+    public Item(String name, float price){
         this.name=name;
         this.price=price;
-        this.isVisible=isVisible;
         this.inStock = 0;
         Item.count ++;
         this.id = count;
     }
 
     //constructor with different arguements
-    public Item(String name, float price, boolean isVisible, int inStock){
+    public Item(String name, float price, int inStock){
         this.name=name;
         this.price=price;
-        this.isVisible=isVisible;
         this.inStock = inStock;
         Item.count ++;
         this.id = count;
@@ -46,7 +44,6 @@ public class Item {
         return "ID: " + this.id +
                " , Item name: " + this.name +
                " , Item price: " + this.price +
-               " , Status: " + (this.isVisible ? "Yes" : "No") +
                " , InStock: " + this.inStock;
     }
     
@@ -55,11 +52,6 @@ public class Item {
     public void setName(String name)
     {
         this.name = name;
-    }
-
-    public void setVisibility(boolean isVisible)
-    {
-        this.isVisible = isVisible;
     }
 
     public void setPrice(float price)
@@ -84,12 +76,16 @@ public class Item {
         return this.inStock;
     }
 
-    public boolean getVisibility(){
-        return this.isVisible;
-    }
-
     public int getId(){
         return this.id;
+    }
+
+    public int getInCartCount(){
+        return this.in_cart_count;
+    }
+
+    public void inc_in_cart_count () {
+        this.in_cart_count ++;
     }
 
     // 

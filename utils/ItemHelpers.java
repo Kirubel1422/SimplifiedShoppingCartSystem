@@ -14,7 +14,6 @@ public class ItemHelpers {
 
         boolean isVisible = false;
         String isVisibleResp = "";
-        String[] validOptions = {"yes", "no"};
         
         float price = 0f;
 
@@ -26,15 +25,6 @@ public class ItemHelpers {
         System.out.print("Enter item price: ");
         price = sc.nextFloat();
 
-        System.out.print("Do you want the item to be visible for customers? [yes/no] ");
-        sc.nextLine();
-        isVisibleResp = sc.nextLine();
-
-        if(!validateInput(validOptions, isVisibleResp, true)){
-            displayError("You can either choose yes or no. ");
-            return items;
-        }
-
         System.out.print("Enter quantity of items you have in stock: ");
         inStock = sc.nextInt();
         if(inStock < 1){
@@ -42,7 +32,7 @@ public class ItemHelpers {
             return items;
         }
 
-        Item item = new Item(item_name, price, isVisible, inStock);
+        Item item = new Item(item_name, price, inStock);
         
         System.out.println(item_name + " successfully added.");
         

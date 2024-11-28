@@ -2,15 +2,19 @@ import java.util.Scanner;
 
 import modules.Cart.Cart;
 import modules.Product.Item;
+import modules.TaxCalculator.TaxCalculator;
 
 import static utils.CartHelpers.*;
 import static utils.ItemHelpers.*;
 import static utils.Basic.*;
+import static utils.TaxHelper.*;
 
 public class ShoppingCartSystem {
     private static Item[] items = new Item[5];
     
     private static Cart myCart = new Cart();
+
+    private static TaxCalculator taxCalculator = new TaxCalculator();
 
     public static void main(String[] args) {
         boolean exit = true;
@@ -34,7 +38,7 @@ public class ShoppingCartSystem {
         int choice = 0;
 
         // Array of valid options
-        int[] validOptions = {1, 2, 3, 4, 5, 6};
+        int[] validOptions = {1, 2, 3, 4, 5, 6, 7};
 
         // Display first menu
         if(is_first_run){
@@ -73,13 +77,17 @@ public class ShoppingCartSystem {
                 removeItemFromCart(myCart, items);
                 break;
             case 4:
-                showCartDetails(myCart);
+                showCartDetails(myCart, taxCalculator);
                 break;
             case 5:
                 printArray(items);
                 break;
             case 6:
+                setTax(taxCalculator);
+                break;
+            case 7:
                 System.exit(1);
+                break;    
             default:
                 break;
         }
