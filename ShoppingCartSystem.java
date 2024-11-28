@@ -27,7 +27,7 @@ public class ShoppingCartSystem {
             System.out.println("Choice: " + first_menu_choice);
             displaySecondaryMenu(first_menu_choice);
 
-            if(first_menu_choice == 5){
+            if(first_menu_choice == 7){
                 exit = false;
             }
         }while(exit);
@@ -50,7 +50,7 @@ public class ShoppingCartSystem {
         System.out.println("3. Remove Item from your Cart");
         System.out.println("4. Show Cart Details");
         System.out.println("5. List all available Items.");
-        System.out.println("6. Add tax rate.");
+        System.out.println("6. Change default tax rate.");
         System.out.println("7. Exit");
         
         // Get user choice
