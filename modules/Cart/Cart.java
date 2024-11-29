@@ -72,6 +72,7 @@ public class Cart extends Item
             individualItem.inc_in_cart_count();
             inCart++;
             i++;
+            
         }
         else{
             System.out.println("There is no item in the stock\n");
