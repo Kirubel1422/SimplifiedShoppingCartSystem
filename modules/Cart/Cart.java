@@ -1,14 +1,15 @@
 package modules.Cart;
 
 import modules.Product.*;
-
+//subclass of Item 
 public class Cart extends Item
 {
     private static float totalPrice;
     static float TAX_RATE = 7;
 
-    //specific attribute
+    //creating array of items of class item
     Item[] incartItems = new Item[5];
+
     private int cartId = 0;
     private int inCart;
 
@@ -43,15 +44,15 @@ public class Cart extends Item
 
             if (itemFound) {
                 incartItems = incartArrayCopy;
-                System.out.println("Item removed successfully.");
+                System.out.println("Item removed successfully.\n");
+                itemToBeRemoved.dec_in_cart_count();
             } else {
-                System.out.println("Item not found in the cart.");
+                System.out.println("Item not found in the cart.\n");
             }
         } else {
-            System.out.println("The cart is empty. No item to remove.");
+            System.out.println("The cart is empty. No item to remove.\n");
         }
     }
-
 
     //method to calculate total price of items
     public float getTotalPrice() {
@@ -73,7 +74,7 @@ public class Cart extends Item
             i++;
         }
         else{
-            System.out.println("There is no item in the stock");
+            System.out.println("There is no item in the stock\n");
         }
     }
     
@@ -88,42 +89,49 @@ public class Cart extends Item
     }
 
     // Print in cart items in a good format
-    public int printInCartItems(){
-        if(this.inCart == 0){
+    public int printInCartItems() {
+        if (this.inCart == 0) {
             return -1;
         }
-        
+    
         int[] inCartItemIds = new int[incartItems.length];
         boolean exists = false;
-
-            for(int i=0; i< incartItems.length; i++){
-                Item item = incartItems[i];
-
-                if(item != null){
-                    for(int index:inCartItemIds){
-                        if(index == item.getId()){
-                            exists = true;
-                        }
-                    }
-                    if(!exists){
-                        inCartItemIds[i] = item.getId();
-                        System.out.println("Item Name: " + item.getName() + " , Item Price: " + item.getPrice() + " X " + item.getInCartCount());
+    
+        // Print the table header
+        System.out.println("--------------------------------------------------");
+        System.out.println("| Item Name         | Item Price | Quantity     |");
+        System.out.println("--------------------------------------------------");
+    
+        for (int i = 0; i < incartItems.length; i++) {
+            Item item = incartItems[i];
+    
+            if (item != null) {
+                // Check if item is already in the inCartItemIds array
+                exists = false;
+                for (int index : inCartItemIds) {
+                    if (index == item.getId()) {
+                        exists = true;
+                        break;
                     }
                 }
+    
+                // If the item is not in the array, display it
+                if (!exists) {
+                    inCartItemIds[i] = item.getId();
+    
+                    // Print item details in the table
+                    String itemName = item.getName();
+                    String itemPrice = String.format("%.2f", item.getPrice());
+                    int itemQuantity = item.getInCartCount();
+                    
+                    // Formatting the output to align the columns
+                    System.out.printf("| %-18s | %-10s | %-12d |\n", itemName, itemPrice, itemQuantity);
+                }
             }
-            return 1;
-        
+        }
+    
+        System.out.println("--------------------------------------------------");
+        return 1;
     }
-
-    // public void getTotal(){
-    //     double total = 0;
-    //     for(Item item:incartItems){
-    //         if(item!= null){
-    //             total += item.getPrice();
-    //         }
-    //     }
-
-    //     System.out.println("SubTotal: (without tax) " + total);
-    //     System.out.println("Total: (" + TaxCalculator.)
-    // }
+    
 }

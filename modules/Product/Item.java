@@ -11,7 +11,7 @@ public class Item {
     private static int count = -2;
 
 
-    //default constructor
+    //default constructor -overloading
     public Item()
     {//initializing attributes
         this.name="Unknown Product";
@@ -19,18 +19,20 @@ public class Item {
         this.inStock=1;
         Item.count ++;
         this.id = count;
+      
     }
 
-    //constructor with different arguements
+    //constructor with different arguements -overloading
     public Item(String name, float price){
         this.name=name;
         this.price=price;
         this.inStock = 0;
         Item.count ++;
         this.id = count;
+        
     }
 
-    //constructor with different arguements
+    //constructor with different arguements - overloading 
     public Item(String name, float price, int inStock){
         this.name=name;
         this.price=price;
@@ -88,6 +90,10 @@ public class Item {
         this.in_cart_count ++;
     }
 
+    public void dec_in_cart_count(){
+        this.in_cart_count --;
+    }
+
     // 
     public void inc(){
         this.inStock ++;
@@ -96,7 +102,8 @@ public class Item {
     // 
     public void dec(){
         this.inStock --;
-        System.out.println(this.inStock);
     }
+
+
 }
 

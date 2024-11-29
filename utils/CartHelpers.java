@@ -1,18 +1,17 @@
 package utils;
 
-import static utils.Basic.*;
-
 import java.util.Scanner;
-
 import modules.Cart.Cart;
 import modules.Product.Item;
 import modules.TaxCalculator.TaxCalculator;
+import static utils.Basic.*;
 
 public class CartHelpers {
     public static void addItemToCart(Cart myCart, Item item){
         try {
             myCart.addIteminCart(item);
-            System.out.println(item.getName() + " has been added to your cart successfully.");
+            System.out.println("");
+            System.out.println(item.getName() + " has been added to your cart successfully.\n\n");
         } catch (Exception e) {
             displayError();
         }

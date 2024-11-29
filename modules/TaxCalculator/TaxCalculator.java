@@ -15,7 +15,6 @@ public class TaxCalculator extends Cart implements TaxCalculatorInterface{
         total_price = getTotalPrice() + (tax_rate / 100) * getTotalPrice();
         System.out.println("Total Price: (" + tax_rate + "%) $ " + total_price);
     }
-
     public void displayFinalPrice(){
         calculatePrice();
         calculatePrice(true);
